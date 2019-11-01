@@ -1,0 +1,9 @@
+<div class='card news-item'>
+  <div class='image'>
+    <img [src]='article?.urlToImage || imagePlaceholder' [alt]='article?.title'/>
+  </div>
+  <h3 class='title'>{{ article?.title }}</h3>
+  <p class='description'>{{ article?.description }}</p>
+  <h4 class='author'>{{ article?.author }}</h4>
+  <p class='date'>{{ article?.publishedAt | date:'longDate' }}</p>
+</div>

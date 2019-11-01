@@ -1,0 +1,64 @@
+<section class='container'>
+  <div class='row filters' *ngIf='sources$ | async as sources else sourcesLoading'>
+    <div class='col-lg-4 col-sm-12'>
+      <input
+        autofocus
+        [formControl]='query'
+        type='text'
+        class='form-control'
+        placeholder='Type for search'/>
+    </div>
+    <div class='col-lg-4 col-sm-12'>
+      <ng-select
+        (change)='changeCategory($event)'
+        [items]='sources?.categories'
+        [hideSelected]='true'
+        [(ngModel)]='defaultCategory'
+        class='hubber-select'
+        placeholder='Select category'>
+      </ng-select>
+    </div>
+    <div class='col-lg-4 col-sm-12'>
+      <ng-select
+        (change)='changeCountry($event)'
+        [items]='sources?.countries'
+        [hideSelected]='true'
+        bindValue='value'
+        class='hubber-select'
+        placeholder='Select country'>
+      </ng-select>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-sm-12'>
+      <ng-container *ngIf='articles$ | async as articleResponse else articlesLoading'>
+        <div class='articles'>
+          <ng-container *ngFor='let article of articleResponse?.articles'>
+            <hubber-news-item [article]='article'></hubber-news-item>
+          </ng-container>
+        </div>
+        <pagination
+          [totalItems]='articleResponse?.totalResults'
+          [maxSize]='5'
+          [itemsPerPage]='20'
+          [(ngModel)]='currentPage'
+          (pageChanged)='changePage($event)'>
+        </pagination>
+      </ng-container>
+      <ng-template #articlesLoading>
+        <div class="text-center">
+          <div class='spinner-grow' style='width: 3rem; height: 3rem;'>
+            <span class='sr-only'>Loading...</span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #sourcesLoading>
+    <div class="text-center">
+      <div class='spinner-grow' style='width: 3rem; height: 3rem;'>
+        <span class='sr-only'>Loading...</span>
+      </div>
+    </div>
+  </ng-template>
+</section>

@@ -1,16 +1,21 @@
 {
   "extends": "../tslint.json",
   "rules": {
+    "variable-name": {
+      "options": [
+        "allow-leading-underscore"
+      ]
+    },
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "hubber",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "hubber",
       "kebab-case"
     ]
   }
