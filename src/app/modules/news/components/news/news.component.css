@@ -17,7 +17,7 @@ hubber-news-item {
 
 @media screen and (max-width: 991px) {
   .articles {
-    height: calc(100vh - 185px);
+    height: calc(100vh - 250px);
   }
 
   .hubber-select {
